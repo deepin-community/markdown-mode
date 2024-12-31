@@ -1,5 +1,159 @@
-template-repository (1.0-1) unstable; urgency=medium
+markdown-mode (2.6-2) unstable; urgency=medium
 
-  * Initial release
+  * Team upload.
+  * Rebuild against dh-elpa 2.1.5.
+    Upload pushed to dgit-repos but not salsa.
+    See <https://lists.debian.org/debian-emacsen/2024/07/msg00077.html>.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Sean Whitton <spwhitton@spwhitton.name>  Thu, 25 Jul 2024 22:44:23 +0900
+
+markdown-mode (2.6-1) unstable; urgency=medium
+
+  [ Xiyue Deng ]
+  * Team upload.
+  * New upstream release (Closes: #1064619).
+  * Mark test wiki-link-rules as expected to fail.
+  * Add upstream bug for patches in DEP3 headers.
+  * Update Standards-Version to 4.6.2.  No change needed.
+  * Update d/watch to version 4 with special substitute strings.
+  * Add Upstream-Contact to d/copyright.
+  * Add d/upstream/metadata.
+
+ -- Sean Whitton <spwhitton@spwhitton.name>  Tue, 27 Feb 2024 12:33:24 +0800
+
+markdown-mode (2.5-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bug fix: "Please import upstream version 2.5", thanks to Nicholas D
+    Steeves (Closes: #1009219).
+
+ -- David Bremner <bremner@debian.org>  Tue, 17 May 2022 08:51:02 -0300
+
+markdown-mode (2.4-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Switch to debhelper-compat 13.
+  * Address lintian's informational nag "synopsis-is-a-sentence" by dropping
+    the end punctuation of the short description.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Tue, 30 Jun 2020 15:52:39 -0400
+
+markdown-mode (2.3+290-1) unstable; urgency=medium
+
+  * Team upload.
+  * Package new upstream snapshot.
+  * Add libtext-markdown-perl as an alternative Recommends; like discount,
+    it provides a Markdown 1.0 compatible interface at /usr/bin/markdown.
+  * libtext-multimarkdown-perl | pandoc | python3-markdown do not conflict
+    with each other and are not alternatives to each other.  Update
+    Suggests to list them rather than declaring them as alternatives.
+  * Update long description to note supported Markdown flavours, special
+    support for GFM, differences in exported results, and optional
+    markdown-command alternatives such as Pandoc and
+    libtext-multimarkdown-perl.
+  * Add pandoc to Build-Depends because the following tests require it:
+    - test-markdown-command/list-of-strings
+    - test-markdown-command/string-command
+    - test-markdown-command/string-command-with-options
+  * control: Add Rules-Requires-Root: no.
+  * Declare Standards-Version 4.5.0 (no changes required).
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Sun, 10 May 2020 18:06:03 -0400
+
+markdown-mode (2.3+210-1) unstable; urgency=medium
+
+  * Team upload.
+  * Package new upstream snapshot.
+  * Update Maintainer team name and email address.
+  * Switch to debhelper-compat 12.
+  * Simplify elpa-markdown-mode by using current standards for elpafied
+    packages.
+  * Add markdown | discount to Recommends.  Discount provides a Markdown 1.0
+    compatible interface at /usr/bin/markdown (Closes: #841524).
+  * Add libtext-multimarkdown-perl | pandoc | python3-markdown to Suggests.
+    While these programs pass the Markdown 1.0 test suite and are recommended
+    by upstream, they require additional configuration.
+  * Enable autopkgtests, and use the original markdown package to run these.
+  * Add debian/elpa-test:
+    - Keep "tests/*" around when running autopkgtests.
+    - Load debian/ert-helper.el; also, keep it around for autopkgtests.
+  * Add debian/ert-helper.el to replicate upstream Makefile behaviour
+    eg: byte-compile the test suite before running tests.
+  * debian/rules:
+    - Enable dh_elpa_test and drop comments related to old method.
+    - Override dh_auto_build and dh_auto_test to ignore upstream Makefile.
+    - Override dh_auto_clean to cleanup byte compiled lisp files.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Wed, 11 Sep 2019 01:48:00 -0400
+
+markdown-mode (2.3+154-2) unstable; urgency=medium
+
+  * debian/copyright:
+    - Upstream changed to GPL-3+ at 7a8b389 for the markdown-mode 2.3.
+      This is now reflected in the Debian package.
+    - Update Jason R. Blevins's copyright years.
+    - Update David Bremner's copyright years.
+    - Switch debian/* to GPL-3+.  David Bremner ACKed on IRC #debian-emacs.
+  * Add Suggests: elpa-imenu-list; this enables a document structure sidebar
+    (Closes: #900305).
+  * Add "Enhances: emacs", because this is normal for an elpa-foo package.
+  * Use secure URL for Homepage.
+  * Drop minimum dh-elpa version, since stretch has dh-elpa_1.6.
+  * Declare Standards-Version: 4.3.0
+    - debian/control: Stop using Built-Using.
+    - debian/copyright: Use secure URL for Source.
+  * Update Vcs links to use salsa instead of alioth.
+  * Install upstream README.md, which documents various keyboard shortcuts
+    and the significance of gfm-mode.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Wed, 23 Jan 2019 09:27:22 -0700
+
+markdown-mode (2.3+154-1) unstable; urgency=medium
+
+  [ David Bremner ]
+  * debian: use debhelper compat level 10
+  * debian: use --with elpa
+  * debian: go back to using upstream's test rule.
+    Since it exists, and seems to work
+
+  [ Sean Whitton ]
+  * fix two test suite tests with dh_elpa_test
+    - test-markdown-ext/ikiwiki
+    - test-markdown-font-lock/mmd-metadata
+
+  [ Matteo F. Vescovi ]
+  * New upstream release (Closes: #881861)
+  * debian/control: debhelper version bump 9 -> 10
+  * debian/control: S-V bump 3.9.6 -> 4.1.2 (no changes needed)
+  * debian/control: Vcs-* fields updated to use https://
+
+ -- David Bremner <bremner@debian.org>  Sat, 23 Dec 2017 15:55:15 -0400
+
+markdown-mode (2.1-1) unstable; urgency=medium
+
+  * Add Built-Using header
+  * New upstream release
+
+ -- David Bremner <bremner@debian.org>  Sun, 14 Feb 2016 12:53:29 -0400
+
+markdown-mode (2.0snapshot78-3) unstable; urgency=medium
+
+  * Rebuild with newer dh-elpa. Should fix: "unowned directory after purge:
+    /usr/share/emacs24/site-lisp/elpa/", thanks to Andreas Beckmann
+    (Closes: #803449).
+
+ -- David Bremner <bremner@debian.org>  Fri, 30 Oct 2015 07:36:44 -0300
+
+markdown-mode (2.0snapshot78-2) unstable; urgency=medium
+
+  * Rebuild with dh-elpa 0.12. Fixes emacsen-common breakage on emacs
+    upgrade.
+
+ -- David Bremner <bremner@debian.org>  Sat, 26 Sep 2015 09:50:00 -0300
+
+markdown-mode (2.0snapshot78-1) unstable; urgency=low
+
+  * Initial upload (Closes: #798209).
+
+ -- David Bremner <bremner@debian.org>  Sun, 13 Sep 2015 20:05:38 -0300

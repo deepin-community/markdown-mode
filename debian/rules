@@ -1,4 +1,18 @@
 #!/usr/bin/make -f
 
+# work around unfortunate versions in upstream snapshots
+
+include /usr/share/dpkg/pkg-info.mk
+export DEB_VERSION_UPSTREAM
+
 %:
-	dh $@
+	dh $@ --with elpa
+
+override_dh_auto_build:
+	@echo Using dh-elpa for build/install instead of upstream Makefile
+
+override_dh_auto_test:
+	@echo Using dh_elpa_test to run tests instead of upstream Makefile
+
+override_dh_auto_clean:
+	rm -f *.elc tests/*.elc

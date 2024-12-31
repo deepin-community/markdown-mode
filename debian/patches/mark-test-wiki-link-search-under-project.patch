@@ -1,0 +1,20 @@
+From: David Bremner <bremner@debian.org>
+Date: Tue, 17 May 2022 09:06:30 -0300
+X-Dgit-Generated: 2.5-1 e133d2b834bb0f5ee635c0f0b208f1db1f1c7547
+Subject: mark test wiki-link-search-under-project as expected to fail
+Bug: https://github.com/jrblevin/markdown-mode/issues/825
+
+As per discussion in #1009219.
+
+---
+
+--- markdown-mode-2.5.orig/tests/markdown-test.el
++++ markdown-mode-2.5/tests/markdown-test.el
+@@ -6645,6 +6645,7 @@ Detail: https://github.com/jrblevin/mark
+ 
+ (ert-deftest test-markdown-ext/wiki-link-search-under-project ()
+   "Test that searching link under project root."
++  :expected-result :failed
+   (let ((markdown-enable-wiki-links t)
+         (markdown-link-space-sub-char " ")
+         (markdown-wiki-link-search-type '(project))
