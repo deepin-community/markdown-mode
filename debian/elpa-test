@@ -1,0 +1,2 @@
+autopkgtest_keep = tests/*, debian/ert-helper.el
+ert_eval = (load-file "debian/ert-helper.el")

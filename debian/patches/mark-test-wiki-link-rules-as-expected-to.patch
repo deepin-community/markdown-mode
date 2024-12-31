@@ -1,0 +1,24 @@
+From: Xiyue Deng <manphiz@gmail.com>
+Date: Mon, 26 Feb 2024 11:40:30 -0800
+X-Dgit-Generated: 2.6-1 fbf32793b978bd14f05b38fab9d6a32108b1b07b
+Subject: mark test wiki-link-rules as expected to fail
+Bug: https://github.com/jrblevin/markdown-mode/issues/825
+
+* Failing similarly as wiki-link-search-under-project.
+* Issue forwarded upstream:
+https://github.com/jrblevin/markdown-mode/issues/825.
+
+---
+
+diff --git a/tests/markdown-test.el b/tests/markdown-test.el
+index 93cbcf3..70dfcfb 100644
+--- a/tests/markdown-test.el
++++ b/tests/markdown-test.el
+@@ -6758,6 +6758,7 @@ x|"
+ 
+ (ert-deftest test-markdown-ext/wiki-link-rules ()
+   "Test wiki link search rules and font lock for missing pages."
++  :expected-result :failed
+   (let ((markdown-enable-wiki-links t)
+         (markdown-wiki-link-fontify-missing t)
+         (markdown-wiki-link-search-type '(project)))

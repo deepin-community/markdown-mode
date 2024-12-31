@@ -1,15 +1,42 @@
-Source: template-repository
-Section: unknown
+Source: markdown-mode
+Section: lisp
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Emacsen team <debian-emacsen@lists.debian.org>
+Uploaders: David Bremner <bremner@debian.org>
+Standards-Version: 4.6.2
+Build-Depends: debhelper-compat (= 13), dh-elpa
+             , markdown
+             , pandoc
+Rules-Requires-Root: no
+Homepage: https://jblevins.org/projects/markdown-mode/
+Vcs-Git: https://salsa.debian.org/emacsen-team/markdown-mode.git
+Vcs-Browser: https://salsa.debian.org/emacsen-team/markdown-mode
+Testsuite: autopkgtest-pkg-elpa
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: elpa-markdown-mode
+Architecture: all
+Depends: ${elpa:Depends}, ${misc:Depends}
+Recommends: markdown | discount | libtext-markdown-perl
+Suggests: elpa-imenu-list
+        , libtext-multimarkdown-perl
+        , pandoc
+        , python3-markdown
+Enhances: emacs
+Description: mode for editing Markdown-formatted text files in GNU Emacs
+ The mode provides syntax highlighting, and keyboard shortcuts for editing,
+ compiling, and previewing Markdown.  It has general support for various
+ markdown flavours, supports Markdown 1.0 and CommonMark, and includes a
+ special GFM (Github Flavoured Markdown) major mode.
+ .
+ Out of the box, markdown-mode will use markdown, discount, or
+ libtext-markdown-perl for HTML preview and export by calling
+ /usr/bin/markdown.  Please note that they produce slightly different
+ results (eg: apostrophes exported as " ' " vs " ’ "), and they may
+ handle digressions from the CommonMark specification in different
+ ways—for example in what is identified as a sublist rather than a
+ subsequent list item.
+ .
+ If "defcustom markdown-command" is customised it can also be made to
+ work with pandoc, libtext-multimarkdown-perl, or python3-markdown.
+ Using pandoc will also unlock various other configuration options.
+ See README.md and customize-mode for details.
